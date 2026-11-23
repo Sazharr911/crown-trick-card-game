@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crown Trick — a trick-taking card duel</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div id="table">
+  <!-- top HUD -->
+  <header id="hud">
+    <div class="brand"><span class="crown-glyph">♛</span> CROWN TRICK</div>
+    <div id="hud-center">
+      <span id="hand-label">Hand 1</span>
+      <span class="dot">·</span>
+      <span id="trick-label">Trick 1 of 13</span>
+      <span class="dot">·</span>
+      <span id="target-label">First to 40 points takes the crown</span>
+    </div>
+    <div id="trump-medal" title="Trump suit">
+      <span class="trump-caption">TRUMP</span>
+      <span id="trump-suit">♠</span>
+    </div>
+  </header>
+
+  <!-- rival seats -->
+  <section class="seat seat-north" id="seat-2">
+    <div class="seat-tag"><span class="avatar">V</span><span class="seat-name">Baroness Vex</span><span class="seat-score">0</span></div>
+    <div class="rival-hand" data-hand="2"></div>
+    <div class="trick-pips" data-pips="2"></div>
+  </section>
+  <section class="seat seat-west" id="seat-1">
+    <div class="seat-tag"><span class="avatar">R</span><span class="seat-name">Captain Rook</span><span class="seat-score">0</span></div>
+    <div class="rival-hand" data-hand="1"></div>
+    <div class="trick-pips" data-pips="1"></div>
+  </section>
+  <section class="seat seat-east" id="seat-3">
+    <div class="seat-tag"><span class="avatar">F</span><span class="seat-name">Madame Fable</span><span class="seat-score">0</span></div>
+    <div class="rival-hand" data-hand="3"></div>
+    <div class="trick-pips" data-pips="3"></div>
+  </section>
+
+  <!-- centre of the table: the live trick -->
+  <main id="arena">
+    <div id="banner" role="status"></div>
+    <div id="trick-zone">
+      <div class="slot slot-north" data-slot="2"></div>
+      <div class="slot slot-west" data-slot="1"></div>
+      <div class="slot slot-east" data-slot="3"></div>
+      <div class="slot slot-south" data-slot="0"></div>
+      <div id="crown-jack-badge" hidden>♛ Crown Jack in play — worth +3</div>
+    </div>
+  </main>
+
+  <!-- the player's seat -->
+  <section class="seat seat-south" id="seat-0">
+    <div class="seat-tag you"><span class="avatar you-av">Y</span><span class="seat-name">You</span><span class="seat-score">0</span></div>
+    <div class="trick-pips" data-pips="0"></div>
+    <div id="player-hand"></div>
+    <div id="hint-line">Click a glowing card to play it. You must follow suit if you can.</div>
+  </section>
+
+  <!-- start overlay -->
+  <div class="overlay" id="start-overlay">
+    <div class="panel">
+      <div class="panel-crown">♛</div>
+      <h1>CROWN TRICK</h1>
+      <p class="tagline">Thirteen tricks. One crown. Three rivals who want it.</p>
+      <ul class="rules">
+        <li>Win tricks by playing the highest card of the suit led — or a trump.</li>
+        <li>Every trick scores <b>2 points</b>. Capture the <b class="gold">♛ Crown Jack</b> (the Jack of trump) for <b>+3</b>.</li>
+        <li>Take all 13 tricks in a hand for a <b>+5 sweep bonus</b>. First to <b>40 points</b> wins the crown.</li>
+      </ul>
+      <button class="big-btn" id="deal-btn">Deal the cards</button>
+      <p class="fineprint">A full 52-card deck, dealt fresh each hand. Trump rotates every hand.</p>
+    </div>
+  </div>
+
+  <!-- end overlay -->
+  <div class="overlay" id="end-overlay" hidden>
+    <div class="panel">
+      <div class="panel-crown" id="end-crown">♛</div>
+      <h1 id="end-title">You take the crown!</h1>
+      <p class="tagline" id="end-subtitle"></p>
+      <table id="standings"></table>
+      <button class="big-btn" id="again-btn">Play again</button>
+    </div>
+  </div>
+
+  <p id="sr-status" role="status" aria-live="polite"></p>
+</div>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
